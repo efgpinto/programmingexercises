@@ -9,7 +9,6 @@ public class Dominator {
         Deque<Integer> l = new ArrayDeque<Integer>();
         
         for (int i = 0; i < A.length; i++) {
-        	//System.out.println(" A " + A[i]);
             if (!l.isEmpty() && A[i] != A[l.peek()]) {
                 l.pop();
             }
