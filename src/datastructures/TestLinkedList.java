@@ -36,10 +36,6 @@ public class TestLinkedList {
 		list.remove(5);
 		assertEquals(3, list.size());
 		
-		/*for (Integer i : list) {
-			System.out.println(i + ",");
-		}*/
-		
 		System.out.println(list);
 	}
 

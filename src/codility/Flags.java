@@ -21,8 +21,6 @@ public class Flags {
     		}
     	}
     		
-    	//for (int i : peaksIdx)
-    		//System.out.println(i);
     	int flags = 1;
     	int flagDist = peaksIdx.size(), lastFlag = 1;
     	for (int i = 1; i < peaksIdx.size() && flags < flagDist; i++) {

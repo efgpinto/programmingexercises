@@ -7,5 +7,5 @@ This repository contains my solutions to a diverse set of competitive programmin
 
 ## Notes
 
-The problem statement is provided along with the solution at the top of the file. If otherwise, let me know.
+The problem statement is usually provided along with the solution at the top of the file. If otherwise, I'll try to update them.
 I do not own any rights regarding the actual problem statements.
