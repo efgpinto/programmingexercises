@@ -1,0 +1,7 @@
+.idea/
+ProgrammingExercises.iml
+out/*
+bin/*
+**/.DS_Store
+/bin/
+target/
