@@ -1,4 +1,6 @@
-# Programming Exercises 
+# Programming Exercises
+
+[![Build Status](https://travis-ci.org/efgpinto/programmingexercises.svg?branch=master)](https://travis-ci.org/efgpinto/programmingexercises) 
 
 This repository contains my solutions to a diverse set of competitive programming problems using Java. Problems are divided by its origin:
 * Codility: 18 problems
