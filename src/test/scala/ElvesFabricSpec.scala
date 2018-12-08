@@ -11,5 +11,10 @@ class ElvesFabricSpec extends FlatSpec {
     assert(ElvesFabric.part1(official) == 101469)
   }
 
+  "Part2" should "calculates no overlaps id" in {
+    assert(ElvesFabric.part2(small) == 3)
+    assert(ElvesFabric.part2(official) == 1067)
+  }
+
 
 }
