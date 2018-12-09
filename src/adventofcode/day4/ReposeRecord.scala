@@ -4,6 +4,7 @@ import java.util.Date
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
+import scala.collection.immutable.TreeMap
 import scala.collection.mutable
 import scala.io.Source
 
@@ -11,6 +12,7 @@ object ReposeRecord extends App {
 
   val pattern = "\\[(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})\\] (.*)".r
   val patternAction = "Guard #(\\d+) .*".r
+  val sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm")
 
   // part 1 assertions
   val result = part1("src/adventofcode/day4/small.txt")
@@ -26,19 +28,16 @@ object ReposeRecord extends App {
   val result4 = part2("src/adventofcode/day4/input.txt")
   assert(result4 == 136461, s"Wrong: $result4")
 
+  def buildTimeline(file: String): TreeMap[Date, String] = {
+    Source.fromFile(file).getLines.toStream
+      .foldLeft(TreeMap.empty[Date, String]) { (acum, line) =>
+        val pattern(datetime, action) = line
+        acum + (sdf.parse(datetime) -> action)
+      }
+  }
 
   def part1(file: String): Int = {
-
-    val timeline = mutable.TreeMap[Date, String]()
-    val sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm")
-
-    for (line <- Source.fromFile(file).getLines) {
-      val pattern(datetime, action) = line
-
-      val d = sdf.parse(datetime)
-      timeline.put(d, action)
-    }
-    val timelineAsc = timeline.toSeq.sortBy(_._1)
+    val timelineAsc = buildTimeline(file).toSeq.sortBy(_._1)
 
     val sleepById = mutable.HashMap[String, Array[Int]]()
     var guardId: String = "0"
@@ -68,16 +67,7 @@ object ReposeRecord extends App {
   }
 
   def part2(file: String): Int = {
-    val timeline = mutable.TreeMap[Date, String]()
-    val sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm")
-
-    for (line <- Source.fromFile(file).getLines) {
-      val pattern(datetime, action) = line
-
-      val d = sdf.parse(datetime)
-      timeline.put(d, action)
-    }
-    val timelineAsc = timeline.toSeq.sortBy(_._1)
+    val timelineAsc = buildTimeline(file).toSeq.sortBy(_._1)
 
     // debug
     //timelineAsc.foreach { case (k, v) => println(s"$k -> $v") }
