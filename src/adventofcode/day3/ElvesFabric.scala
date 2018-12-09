@@ -5,9 +5,10 @@ import scala.io.Source
 
 object ElvesFabric {
 
+  val pattern = "#(\\d+) @ (\\d+),(\\d+): (\\d+)x(\\d+)".r
+
   def part1(file: String): Int = {
     val posByLine = for (line <- Source.fromFile(file).getLines) yield {
-      val pattern = "#(\\d+) @ (\\d+),(\\d+): (\\d+)x(\\d+)".r
       val pattern(_, x1, y1, xOffset, yOffset) = line
       generatePositions(x1.toInt, y1.toInt, xOffset.toInt, yOffset.toInt)
     }
@@ -27,7 +28,6 @@ object ElvesFabric {
     val postHist = mutable.HashMap[String, Int]()
 
     val posByLine = (for (line <- Source.fromFile(file).getLines) yield {
-      val pattern = "#(\\d+) @ (\\d+),(\\d+): (\\d+)x(\\d+)".r
       val pattern(i, x1, y1, xOffset, yOffset) = line
       i -> generatePositions(x1.toInt, y1.toInt, xOffset.toInt, yOffset.toInt)
     }).toMap
